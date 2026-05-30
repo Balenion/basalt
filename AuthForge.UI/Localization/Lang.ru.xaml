@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <System:String x:Key="m_TipChangeLanguage" xmlns:System="clr-namespace:System;assembly=mscorlib">Сменить язык интерфейса (RU / EN)</System:String>
+    
+    <System:String x:Key="m_SuiteName" xmlns:System="clr-namespace:System;assembly=mscorlib">Инструменты безопасного хеширования</System:String>
+    <System:String x:Key="m_TechStack" xmlns:System="clr-namespace:System;assembly=mscorlib">Технологический стек:</System:String>
+
+    <System:String x:Key="m_TabExcel" xmlns:System="clr-namespace:System;assembly=mscorlib">Excel</System:String>
+    <System:String x:Key="m_TabSingle" xmlns:System="clr-namespace:System;assembly=mscorlib">Одиночный</System:String>
+    <System:String x:Key="m_TabKeys" xmlns:System="clr-namespace:System;assembly=mscorlib">Ключи</System:String>
+
+    <System:String x:Key="m_FileManagement" xmlns:System="clr-namespace:System;assembly=mscorlib">УПРАВЛЕНИЕ ФАЙЛАМИ</System:String>
+    <System:String x:Key="m_BtnChooseExcel" xmlns:System="clr-namespace:System;assembly=mscorlib">ВЫБРАТЬ ИСХОДНЫЙ EXCEL</System:String>
+    <System:String x:Key="m_NoFileSelected" xmlns:System="clr-namespace:System;assembly=mscorlib">Файл не выбран...</System:String>
+    <System:String x:Key="m_NoFileQuestion" xmlns:System="clr-namespace:System;assembly=mscorlib">Нет готового файла?</System:String>
+    <System:String x:Key="m_BtnGenerateTemplate" xmlns:System="clr-namespace:System;assembly=mscorlib">СОЗДАТЬ ПУСТОЙ ШАБЛОН</System:String>
+    <System:String x:Key="m_BtnStartForging" xmlns:System="clr-namespace:System;assembly=mscorlib">ЗАПУСТИТЬ КОВКУ</System:String>
+    <System:String x:Key="m_TipStartForging" xmlns:System="clr-namespace:System;assembly=mscorlib">Начать обработку Excel-файла с выбранными параметрами</System:String>
+
+    <System:String x:Key="m_AlgoConfig" xmlns:System="clr-namespace:System;assembly=mscorlib">КОНФИГУРАЦИЯ АЛГОРИТМА</System:String>
+    <System:String x:Key="m_ArgonParams" xmlns:System="clr-namespace:System;assembly=mscorlib">Параметры Argon2</System:String>
+    <System:String x:Key="m_ParamMemory" xmlns:System="clr-namespace:System;assembly=mscorlib">Память (RAM):</System:String>
+    <System:String x:Key="m_ParamIterations" xmlns:System="clr-namespace:System;assembly=mscorlib">Итерации:</System:String>
+    <System:String x:Key="m_ParamParallelism" xmlns:System="clr-namespace:System;assembly=mscorlib">Параллелизм (Потоки):</System:String>
+    <System:String x:Key="m_WarningSHA256" xmlns:System="clr-namespace:System;assembly=mscorlib">ВНИМАНИЕ: SHA256 без соли уязвим к атакам по радужным таблицам!</System:String>
+    <System:String x:Key="m_LegacyOptions" xmlns:System="clr-namespace:System;assembly=mscorlib">Устаревшие опции</System:String>
+    <System:String x:Key="m_UseSalt" xmlns:System="clr-namespace:System;assembly=mscorlib">Использовать соль (Рекомендуется)</System:String>
+    <System:String x:Key="m_StatusProgress" xmlns:System="clr-namespace:System;assembly=mscorlib">Идет ковка хэшей...</System:String>
+
+    <System:String x:Key="m_InputData" xmlns:System="clr-namespace:System;assembly=mscorlib">ВХОДНЫЕ ДАННЫЕ</System:String>
+    <System:String x:Key="m_HintEnterPassword" xmlns:System="clr-namespace:System;assembly=mscorlib">Введите пароль для хэширования</System:String>
+    <System:String x:Key="m_CurrentConfig" xmlns:System="clr-namespace:System;assembly=mscorlib">ТЕКУЩАЯ КОНФИГУРАЦИЯ</System:String>
+    <System:String x:Key="m_BtnGenerateHash" xmlns:System="clr-namespace:System;assembly=mscorlib">СГЕНЕРИРОВАТЬ ХЭШ</System:String>
+    <System:String x:Key="m_SettingsReused" xmlns:System="clr-namespace:System;assembly=mscorlib">НАСТРОЙКИ ВЗЯТЫ ИЗ ВКЛАДКИ EXCEL</System:String>
+    <System:String x:Key="m_ResultInspector" xmlns:System="clr-namespace:System;assembly=mscorlib">ИНСПЕКТОР РЕЗУЛЬТАТОВ</System:String>
+    <System:String x:Key="m_PassHash" xmlns:System="clr-namespace:System;assembly=mscorlib">Хэш пароля:</System:String>
+    <System:String x:Key="m_SaltBase64" xmlns:System="clr-namespace:System;assembly=mscorlib">Соль (Base64):</System:String>
+    <System:String x:Key="m_TipCopyHash" xmlns:System="clr-namespace:System;assembly=mscorlib">Копировать хэш</System:String>
+    <System:String x:Key="m_TipCopySalt" xmlns:System="clr-namespace:System;assembly=mscorlib">Копировать соль</System:String>
+    <System:String x:Key="m_InfoAlgoNone" xmlns:System="clr-namespace:System;assembly=mscorlib">Алгоритм: Не выбран</System:String>
+
+    <System:String x:Key="m_GenParams" xmlns:System="clr-namespace:System;assembly=mscorlib">ПАРАМЕТРЫ ГЕНЕРАЦИИ</System:String>
+    <System:String x:Key="m_KeyLength" xmlns:System="clr-namespace:System;assembly=mscorlib">Длина ключа (Энтропия):</System:String>
+    <System:String x:Key="m_Rb128" xmlns:System="clr-namespace:System;assembly=mscorlib">128-бит (Быстро, для мелких приложений)</System:String>
+    <System:String x:Key="m_Rb256" xmlns:System="clr-namespace:System;assembly=mscorlib">256-бит (Стандартная безопасность)</System:String>
+    <System:String x:Key="m_Rb512" xmlns:System="clr-namespace:System;assembly=mscorlib">512-бит (Максимальная защита)</System:String>
+    <System:String x:Key="m_BtnGenSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">СГЕНЕРИРОВАТЬ СЕКРЕТ</System:String>
+    <System:String x:Key="m_CryptoNote" xmlns:System="clr-namespace:System;assembly=mscorlib">Ключи генерируются с использованием криптографически стойкого генератора случайных чисел.</System:String>
+    <System:String x:Key="m_SecretKeyOutput" xmlns:System="clr-namespace:System;assembly=mscorlib">ВЫВОД СЕКРЕТНОГО КЛЮЧА</System:String>
+    <System:String x:Key="m_Base64Secret" xmlns:System="clr-namespace:System;assembly=mscorlib">Секрет в кодировке Base64:</System:String>
+    <System:String x:Key="m_TipCopyKey" xmlns:System="clr-namespace:System;assembly=mscorlib">Копировать ключ</System:String>
+    <System:String x:Key="m_UsageGuide" xmlns:System="clr-namespace:System;assembly=mscorlib">РУКОВОДСТВО ПО ИСПОЛЬЗОВАНИЮ</System:String>
+    <System:String x:Key="m_GuideJwt" xmlns:System="clr-namespace:System;assembly=mscorlib">Идеально для 'Jwt:Key' в appsettings.json</System:String>
+    <System:String x:Key="m_GuideAes" xmlns:System="clr-namespace:System;assembly=mscorlib">Можно использовать как соль для AES-шифрования</System:String>
+</ResourceDictionary>

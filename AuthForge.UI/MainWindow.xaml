@@ -12,11 +12,11 @@
         Background="Transparent"
         WindowStartupLocation="CenterScreen" Icon="/Icons/icon_auth_forge.ico">
     <Border Margin="10" 
-            Background="{DynamicResource MaterialDesignPaper}" 
-            CornerRadius="15" 
-            x:Name="MainBorder"
-            BorderThickness="1"
-            BorderBrush="{DynamicResource PrimaryHueLightBrush}">
+        Background="{DynamicResource MaterialDesignPaper}" 
+        CornerRadius="15" 
+        x:Name="MainBorder"
+        BorderThickness="1"
+        BorderBrush="{DynamicResource PrimaryHueLightBrush}">
         <Border.Effect>
             <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2" Opacity="0.5"/>
         </Border.Effect>
@@ -26,74 +26,86 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <materialDesign:ColorZone Mode="PrimaryMid" 
-                                      CornerRadius="15,15,0,0" 
-                                      Padding="12" 
-                                      x:Name="TitleBar"
-                                      MouseDown="TitleBar_MouseDown">
+                                  CornerRadius="15,15,0,0" 
+                                  Padding="12" 
+                                  x:Name="TitleBar"
+                                  MouseDown="TitleBar_MouseDown">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <materialDesign:PackIcon Kind="ShieldKey" Width="28" Height="28" 
-                                                 VerticalAlignment="Center" Foreground="White"/>
+                                             VerticalAlignment="Center" Foreground="White"/>
                         <TextBlock Text="AUTH FORGE" 
-                                   Margin="12,0,0,0" 
-                                   VerticalAlignment="Center" 
-                                   FontSize="18" 
-                                   FontWeight="Bold" Foreground="White"/>
+                               Margin="12,0,0,0" 
+                               VerticalAlignment="Center" 
+                               FontSize="18" 
+                               FontWeight="Bold" Foreground="White"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                Foreground="White" Margin="0,0,5,0"
+                                Width="40" Padding="0" Click="ChangeLanguage_Click">
+                            <Button.ToolTip>
+                                <ToolTip Content="{DynamicResource m_TipChangeLanguage}"/>
+                            </Button.ToolTip>
+                            <materialDesign:PackIcon Kind="Translate" Width="20" Height="20" VerticalAlignment="Center"/>
+                        </Button>
+
                         <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
-                                                 Margin="0,0,10,0">
+                                             Margin="0,0,10,0">
                             <materialDesign:PopupBox.ToggleContent>
                                 <materialDesign:PackIcon Kind="InformationOutline" 
-                                 Width="24" 
-                                 Height="24" 
-                                 Foreground="OrangeRed"/>
+                                                     Width="24" 
+                                                     Height="24" 
+                                                     Foreground="OrangeRed"/>
                             </materialDesign:PopupBox.ToggleContent>
                             <Border Background="#1A1A1A" BorderBrush="Cyan" BorderThickness="1" 
-                                    Width="280" CornerRadius="8" Padding="15">
+                                Width="280" CornerRadius="8" Padding="15">
                                 <StackPanel>
-                                    <TextBlock Text="AUTHFORGE v1.0" FontSize="16" 
-                                               FontWeight="Bold" Foreground="Cyan" Margin="0,0,0,10"/>
+                                    <TextBlock Text="AUTHFORGE v1.0.1" FontSize="16" 
+                                           FontWeight="Bold" Foreground="Cyan" Margin="0,0,0,10"/>
                                     <Separator Background="Cyan" Opacity="0.3" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Secure Identity Hashing Suite" FontStyle="Italic" 
-                                               Foreground="White" Opacity="0.8" TextWrapping="Wrap"/>
-                                    <TextBlock Text="Tech Stack:" Margin="0,15,0,5" FontWeight="SemiBold" 
-                                               Foreground="OrangeRed"/>
+                                    <TextBlock Text="{DynamicResource m_SuiteName}" FontStyle="Italic" 
+                                           Foreground="White" Opacity="0.8" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{DynamicResource m_TechStack}" Margin="0,15,0,5" FontWeight="SemiBold" 
+                                           Foreground="OrangeRed"/>
                                     <TextBlock Text="• .NET 10 WPF&#x0a;• Argon2id / BCrypt&#x0a;• ClosedXML Engine" 
-                                               FontSize="11" Foreground="White" Opacity="0.7"/>
+                                           FontSize="11" Foreground="White" Opacity="0.7"/>
                                     <TextBlock Text="© 2026 Balenion" Margin="0,20,0,0" 
-                                               FontSize="10" HorizontalAlignment="Right" Foreground="Cyan"/>
+                                           FontSize="10" HorizontalAlignment="Right" Foreground="Cyan"/>
                                 </StackPanel>
                             </Border>
                         </materialDesign:PopupBox>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                Content="{materialDesign:PackIcon Kind=WindowMinimize}"
-                                Foreground="White"
-                                Click="MinimizeBtn_Click" 
-                                Width="50"/>
+                            Content="{materialDesign:PackIcon Kind=WindowMinimize}"
+                            Foreground="White"
+                            Click="MinimizeBtn_Click" 
+                            Width="50"/>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                Content="{materialDesign:PackIcon Kind=WindowMaximize}"
-                                Foreground="White"
-                                Click="MaximizeBtn_Click" 
-                                Width="50"/>
+                            Content="{materialDesign:PackIcon Kind=WindowMaximize}"
+                            Foreground="White"
+                            Click="MaximizeBtn_Click" 
+                            Width="50"/>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                Content="{materialDesign:PackIcon Kind=Close}"
-                                Foreground="#FF5F5F"
-                                Click="CloseBtn_Click" 
-                                Width="50"/>
+                            Content="{materialDesign:PackIcon Kind=Close}"
+                            Foreground="#FF5F5F"
+                            Click="CloseBtn_Click" 
+                            Width="50"/>
                     </StackPanel>
                 </Grid>
             </materialDesign:ColorZone>
+
             <TabControl Grid.Row="1" 
-                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                        materialDesign:NavigationRailAssist.SelectionCornerRadius="10"
-                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-                        Margin="0,10,0,0" Background="#1A1A1A">
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    materialDesign:NavigationRailAssist.SelectionCornerRadius="10"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    Margin="0,10,0,0" Background="#1A1A1A">
+
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Width="80">
                             <materialDesign:PackIcon Kind="FileExcel" HorizontalAlignment="Center" Width="24" Height="24"/>
-                            <TextBlock Text="Excel" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                            <TextBlock Text="{DynamicResource m_TabExcel}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Border Padding="24">
@@ -103,56 +115,58 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                <TextBlock Text="FILE MANAGEMENT" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6"/>
+                                <TextBlock Text="{DynamicResource m_FileManagement}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6"/>
                                 <materialDesign:Card Background="#232323" Margin="0,8,0,16" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
                                     <StackPanel>
                                         <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                                                Content="CHOOSE SOURCE EXCEL"
-                                                materialDesign:ButtonAssist.CornerRadius="8"
-                                                Click="SelectFile_Click"/>
+                                            Content="{DynamicResource m_BtnChooseExcel}"
+                                            materialDesign:ButtonAssist.CornerRadius="8"
+                                            Click="SelectFile_Click"/>
                                         <TextBox Margin="0,12,0,0" 
-                                                 x:Name="FilePathTxt"
-                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                 IsReadOnly="True" FontSize="12" Text="No file selected..."/>
+                                             x:Name="FilePathTxt"
+                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                             IsReadOnly="True" FontSize="12" Text="{DynamicResource m_NoFileSelected}"/>
                                     </StackPanel>
                                 </materialDesign:Card>
                                 <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
                                     <StackPanel>
-                                        <TextBlock Text="Don't have a file?" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{DynamicResource m_NoFileQuestion}" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="0,0,0,8"/>
                                         <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                Content="GENERATE EMPTY TEMPLATE"
-                                                materialDesign:ButtonAssist.CornerRadius="8"
-                                                Click="CreateTemplate_Click"/>
+                                            Content="{DynamicResource m_BtnGenerateTemplate}"
+                                            materialDesign:ButtonAssist.CornerRadius="8"
+                                            Click="CreateTemplate_Click"/>
                                     </StackPanel>
                                 </materialDesign:Card>
-                                <Button x:Name="StartBtn" Margin="0,32,0,0" Height="60" Content="START FORGING" 
-                                        FontSize="18" FontWeight="Bold" IsEnabled="False"
-                                        Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
-                                        materialDesign:ButtonAssist.CornerRadius="12"
-                                        Click="StartHashing_Click">
+                                <Button x:Name="StartBtn" Margin="0,32,0,0" Height="60" Content="{DynamicResource m_BtnStartForging}" 
+                                    FontSize="18" FontWeight="Bold" IsEnabled="False"
+                                    Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="12"
+                                    Click="StartHashing_Click">
                                     <Button.ToolTip>
-                                        <ToolTip Content="Start processing the Excel file with selected parameters"/>
+                                        <ToolTip Content="{DynamicResource m_TipStartForging}"/>
                                     </Button.ToolTip>
                                 </Button>
                             </StackPanel>
+
                             <materialDesign:Card Grid.Column="1" Padding="24" Background="#232323" materialDesign:ElevationAssist.Elevation="Dp4">
                                 <StackPanel>
-                                    <TextBlock Text="ALGORITHM CONFIGURATION" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
+                                    <TextBlock Text="{DynamicResource m_AlgoConfig}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
                                     <ComboBox x:Name="AlgoSelector" Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                              FontSize="16" SelectedIndex="0" SelectionChanged="AlgoSelector_SelectionChanged">
+                                          FontSize="16" SelectedIndex="0" SelectionChanged="AlgoSelector_SelectionChanged">
                                         <ComboBoxItem Content="Argon2id (Recommended)"/>
                                         <ComboBoxItem Content="BCrypt"/>
                                         <ComboBoxItem Content="PBKDF2 (.NET Built-in)"/>
                                         <ComboBoxItem Content="SHA256 (Legacy)"/>
                                     </ComboBox>
+
                                     <StackPanel x:Name="Argon2Settings" Margin="0,24,0,0">
-                                        <TextBlock Text="Argon2 Parameters" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,16" Foreground="White"/>
+                                        <TextBlock Text="{DynamicResource m_ArgonParams}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,16" Foreground="White"/>
                                         <Grid Margin="0,0,0,20">
                                             <StackPanel>
                                                 <DockPanel>
-                                                    <TextBlock Text="Memory (RAM):" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{DynamicResource m_ParamMemory}" VerticalAlignment="Center"/>
                                                     <TextBlock Text="{Binding ElementName=MemorySlider, Path=Value, StringFormat={}{0} MB}" 
-                                                               HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
+                                                           HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
                                                 </DockPanel>
                                                 <Slider x:Name="MemorySlider" Minimum="16" Maximum="512" Value="64" TickFrequency="16" IsSnapToTickEnabled="True" Margin="0,8,0,0"/>
                                             </StackPanel>
@@ -160,9 +174,9 @@
                                         <Grid Margin="0,0,0,20">
                                             <StackPanel>
                                                 <DockPanel>
-                                                    <TextBlock Text="Iterations:" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{DynamicResource m_ParamIterations}" VerticalAlignment="Center"/>
                                                     <TextBlock Text="{Binding ElementName=IterSlider, Path=Value}" 
-                                                               HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
+                                                           HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
                                                 </DockPanel>
                                                 <Slider x:Name="IterSlider" Minimum="1" Maximum="20" Value="4" Margin="0,8,0,0"/>
                                             </StackPanel>
@@ -170,41 +184,43 @@
                                         <Grid>
                                             <StackPanel>
                                                 <DockPanel>
-                                                    <TextBlock Text="Parallelism (Threads):" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{DynamicResource m_ParamParallelism}" VerticalAlignment="Center"/>
                                                     <TextBlock Text="{Binding ElementName=ThreadSlider, Path=Value}" 
-                                                               HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
+                                                           HorizontalAlignment="Right" FontWeight="Bold" Foreground="White"/>
                                                 </DockPanel>
                                                 <Slider x:Name="ThreadSlider" Minimum="1" Maximum="16" Value="8" Margin="0,8,0,0"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>
+
                                     <StackPanel x:Name="LegacySettings" Margin="0,24,0,0" Visibility="Collapsed">
                                         <materialDesign:Card Background="#33FF5252" Padding="12" Margin="0,0,0,16">
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon Kind="Alert" Foreground="#FF5252" VerticalAlignment="Center"/>
-                                                <TextBlock Text="WARNING: SHA256 without salt is vulnerable to rainbow table attacks!" 
-                                                            Margin="10,0,0,0" Foreground="#FF5252" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="11" FontWeight="Bold"/>
+                                                <TextBlock Text="{DynamicResource m_WarningSHA256}" 
+                                                       Margin="10,0,0,0" Foreground="#FF5252" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="11" FontWeight="Bold"/>
                                             </StackPanel>
                                         </materialDesign:Card>
-                                        <TextBlock Text="Legacy Options" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8"/>
-                                        <CheckBox x:Name="UseSaltLegacy" Content="Use Salt (Recommended even for legacy)" 
-                                                  IsChecked="True" Checked="UseSaltLegacy_Checked" Unchecked="UseSaltLegacy_Unchecked" Style="{StaticResource MaterialDesignDarkCheckBox}"/>
+                                        <TextBlock Text="{DynamicResource m_LegacyOptions}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8"/>
+                                        <CheckBox x:Name="UseSaltLegacy" Content="{DynamicResource m_UseSalt}" 
+                                              IsChecked="True" Checked="UseSaltLegacy_Checked" Unchecked="UseSaltLegacy_Unchecked" Style="{StaticResource MaterialDesignDarkCheckBox}"/>
                                     </StackPanel>
                                     <StackPanel x:Name="ProgressArea" Visibility="Collapsed" Margin="0,40,0,0">
-                                        <TextBlock x:Name="StatusTxt" Text="Forging in progress..." Margin="0,0,0,8" Opacity="0.7"/>
+                                        <TextBlock x:Name="StatusTxt" Text="{DynamicResource m_StatusProgress}" Margin="0,0,0,8" Opacity="0.7"/>
                                         <ProgressBar x:Name="HashProgress" Value="0" Height="10" 
-                                                     Style="{StaticResource MaterialDesignLinearProgressBar}"/>
+                                                 Style="{StaticResource MaterialDesignLinearProgressBar}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Grid>
                     </Border>
                 </TabItem>
+
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Width="80">
                             <materialDesign:PackIcon Kind="Fingerprint" HorizontalAlignment="Center" Width="24" Height="24"/>
-                            <TextBlock Text="Single" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                            <TextBlock Text="{DynamicResource m_TabSingle}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Border Padding="24">
@@ -214,15 +230,15 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                <TextBlock Text="INPUT DATA" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
+                                <TextBlock Text="{DynamicResource m_InputData}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
                                 <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
                                     <StackPanel>
-                                        <PasswordBox x:Name="SinglePasswordBox" materialDesign:HintAssist.Hint="Enter password to hash"
-                                                     Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
-                                                     FontSize="16"/>
+                                        <PasswordBox x:Name="SinglePasswordBox" materialDesign:HintAssist.Hint="{DynamicResource m_HintEnterPassword}"
+                                                 Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                 FontSize="16"/>
                                         <materialDesign:Card Padding="12" Margin="0,0,0,16" Background="{DynamicResource PrimaryHueLightBrush}" Opacity="0.9">
                                             <StackPanel>
-                                                <TextBlock Text="CURRENT CONFIGURATION" FontSize="10" FontWeight="Bold" Opacity="0.6"/>
+                                                <TextBlock Text="{DynamicResource m_CurrentConfig}" FontSize="10" FontWeight="Bold" Opacity="0.6"/>
                                                 <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                                                     <materialDesign:PackIcon Kind="SettingsInputComponent" VerticalAlignment="Center" Width="16"/>
                                                     <TextBlock x:Name="ActiveMethodTxt" Text="Argon2id" Margin="8,0,0,0" FontSize="14" FontWeight="SemiBold"/>
@@ -230,56 +246,56 @@
                                                 <TextBlock x:Name="ActiveDetailsTxt" Text="64MB, 4 Iterations" FontSize="11" Opacity="0.7" Margin="24,2,0,0"/>
                                             </StackPanel>
                                         </materialDesign:Card>
-
-                                        <Button Margin="0,20,0,0" Content="GENERATE HASH" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
-                                                Click="GenerateSingleHash_Click" Height="45"/>
+                                        <Button Margin="0,20,0,0" Content="{DynamicResource m_BtnGenerateHash}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                                            Click="GenerateSingleHash_Click" Height="45"/>
                                     </StackPanel>
                                 </materialDesign:Card>
-                                <TextBlock Text="SETTINGS REUSED FROM EXCEL TAB" Margin="0,20,0,0" 
-                                           FontSize="10" HorizontalAlignment="Center" Opacity="0.5"/>
+                                <TextBlock Text="{DynamicResource m_SettingsReused}" Margin="0,20,0,0" 
+                                       FontSize="10" HorizontalAlignment="Center" Opacity="0.5"/>
                             </StackPanel>
                             <materialDesign:Card Background="#232323" Grid.Column="1" Padding="24" materialDesign:ElevationAssist.Elevation="Dp4">
                                 <StackPanel>
-                                    <TextBlock Text="RESULT INSPECTOR" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
-                                    <TextBlock Text="Password Hash:" Opacity="0.6" FontSize="12"/>
+                                    <TextBlock Text="{DynamicResource m_ResultInspector}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
+                                    <TextBlock Text="{DynamicResource m_PassHash}" Opacity="0.6" FontSize="12"/>
                                     <Grid Margin="0,4,0,16">
                                         <TextBox x:Name="ResultHashTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                                 IsReadOnly="True" TextWrapping="Wrap" 
-                                                 VerticalAlignment="Top" AcceptsReturn="True"
-                                                 MinHeight="80" FontSize="14" FontWeight="Medium"/>
+                                             IsReadOnly="True" TextWrapping="Wrap" 
+                                             VerticalAlignment="Top" AcceptsReturn="True"
+                                             MinHeight="80" FontSize="14" FontWeight="Medium"/>
                                         <Button HorizontalAlignment="Right" VerticalAlignment="Top" 
-                                                Margin="0,8,8,0" Padding="4" Height="30" Width="30"
-                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                Click="CopyHash_Click" ToolTip="Copy Hash">
+                                             Margin="0,8,8,0" Padding="4" Height="30" Width="30"
+                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                             Click="CopyHash_Click" ToolTip="{DynamicResource m_TipCopyHash}">
                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="Salt (Base64):" Opacity="0.6" FontSize="12"/>
+                                    <TextBlock Text="{DynamicResource m_SaltBase64}" Opacity="0.6" FontSize="12"/>
                                     <Grid Margin="0,4,0,16">
                                         <TextBox x:Name="ResultSaltTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                                 IsReadOnly="True" FontSize="14"/>
+                                             IsReadOnly="True" FontSize="14"/>
                                         <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
-                                                Margin="0,0,8,0" Padding="4" Height="30" Width="30"
-                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                Click="CopySalt_Click" ToolTip="Copy Salt">
+                                             Margin="0,0,8,0" Padding="4" Height="30" Width="30"
+                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                             Click="CopySalt_Click" ToolTip="{DynamicResource m_TipCopySalt}">
                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
                                         </Button>
                                     </Grid>
                                     <Separator Margin="0,10" Style="{StaticResource MaterialDesignLightSeparator}"/>
                                     <StackPanel Orientation="Horizontal" Opacity="0.7">
                                         <materialDesign:PackIcon Kind="InformationOutline" VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="AlgoInfoTxt" Text="Algorithm: None" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="AlgoInfoTxt" Text="{DynamicResource m_InfoAlgoNone}" Margin="8,0,0,0" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Grid>
                     </Border>
                 </TabItem>
+
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Width="80">
                             <materialDesign:PackIcon Kind="KeyChain" HorizontalAlignment="Center" Width="24" Height="24"/>
-                            <TextBlock Text="Keys" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                            <TextBlock Text="{DynamicResource m_TabKeys}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
                     </TabItem.Header>
                     <Border Padding="24">
@@ -289,50 +305,50 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                <TextBlock Text="GENERATION PARAMETERS" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
+                                <TextBlock Text="{DynamicResource m_GenParams}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
                                 <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
                                     <StackPanel>
-                                        <TextBlock Text="Key Length (Entropy):" Margin="0,0,0,12" Opacity="0.8"/>
-                                        <RadioButton x:Name="Rb128" Content="128-bit (Fast, for small apps)" GroupName="KeySize" Margin="0,0,0,8"/>
-                                        <RadioButton x:Name="Rb256" Content="256-bit (Standard Security)" GroupName="KeySize" IsChecked="True" Margin="0,0,0,8"/>
-                                        <RadioButton x:Name="Rb512" Content="512-bit (Maximum Protection)" GroupName="KeySize" Margin="0,0,0,8"/>
-                                        <Button Margin="0,24,0,0" Content="GENERATE NEW SECRET" 
-                                                Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
-                                                Click="GenerateKey_Click" Height="45"/>
+                                        <TextBlock Text="{DynamicResource m_KeyLength}" Margin="0,0,0,12" Opacity="0.8"/>
+                                        <RadioButton x:Name="Rb128" Content="{DynamicResource m_Rb128}" GroupName="KeySize" Margin="0,0,0,8"/>
+                                        <RadioButton x:Name="Rb256" Content="{DynamicResource m_Rb256}" GroupName="KeySize" IsChecked="True" Margin="0,0,0,8"/>
+                                        <RadioButton x:Name="Rb512" Content="{DynamicResource m_Rb512}" GroupName="KeySize" Margin="0,0,0,8"/>
+                                        <Button Margin="0,24,0,0" Content="{DynamicResource m_BtnGenSecret}" 
+                                            Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                                            Click="GenerateKey_Click" Height="45"/>
                                     </StackPanel>
                                 </materialDesign:Card>
                                 <materialDesign:Card Margin="0,20,0,0" Padding="12" Background="{DynamicResource MaterialDesignTextFieldBox}">
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon Kind="Information" Opacity="0.5" VerticalAlignment="Center"/>
-                                        <TextBlock Text="Keys are generated using a cryptographically secure random number generator." Width="350"
-                                                   Margin="10,0,0,0" FontSize="10" TextWrapping="Wrap" Opacity="0.6" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{DynamicResource m_CryptoNote}" Width="350"
+                                               Margin="10,0,0,0" FontSize="10" TextWrapping="Wrap" Opacity="0.6" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </materialDesign:Card>
                             </StackPanel>
                             <materialDesign:Card Background="#232323" Grid.Column="1" Padding="24" materialDesign:ElevationAssist.Elevation="Dp4">
                                 <StackPanel>
-                                    <TextBlock Text="SECRET KEY OUTPUT" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
-                                    <TextBlock Text="Base64 Encoded Secret:" Opacity="0.6" FontSize="12"/>
+                                    <TextBlock Text="{DynamicResource m_SecretKeyOutput}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
+                                    <TextBlock Text="{DynamicResource m_Base64Secret}" Opacity="0.6" FontSize="12"/>
                                     <Grid Margin="0,4,0,24">
                                         <TextBox x:Name="GeneratedKeyTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                                 IsReadOnly="True" TextWrapping="Wrap" 
-                                                 MinHeight="100" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                                             IsReadOnly="True" TextWrapping="Wrap" 
+                                             MinHeight="100" FontSize="14" FontWeight="Bold" Foreground="White"/>
                                         <Button HorizontalAlignment="Right" VerticalAlignment="Top" 
-                                                Margin="0,8,8,0" Padding="4" Height="30" Width="30"
-                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                                Click="CopyGeneratedKey_Click" ToolTip="Copy Key">
+                                             Margin="0,8,8,0" Padding="4" Height="30" Width="30"
+                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                             Click="CopyGeneratedKey_Click" ToolTip="{DynamicResource m_TipCopyKey}">
                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
                                         </Button>
                                     </Grid>
-                                    <TextBlock Text="USAGE GUIDE" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8" FontSize="16"/>
+                                    <TextBlock Text="{DynamicResource m_UsageGuide}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8" FontSize="16"/>
                                     <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,0,0,16"/>
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                         <materialDesign:PackIcon Kind="DotNet" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Best for 'Jwt:Key' in appsettings.json" Margin="12,0,0,0" Opacity="0.8"/>
+                                        <TextBlock Text="{DynamicResource m_GuideJwt}" Margin="12,0,0,0" Opacity="0.8"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                         <materialDesign:PackIcon Kind="ShieldLock" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="Can be used as an AES Encryption Salt" Margin="12,0,0,0" Opacity="0.8"/>
+                                        <TextBlock Text="{DynamicResource m_GuideAes}" Margin="12,0,0,0" Opacity="0.8"/>
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
