@@ -34,7 +34,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <materialDesign:PackIcon Kind="ShieldKey" Width="28" Height="28" 
                                              VerticalAlignment="Center" Foreground="White"/>
-                        <TextBlock Text="AUTH FORGE" 
+                        <TextBlock Text="AUTHFORGE" 
                                Margin="12,0,0,0" 
                                VerticalAlignment="Center" 
                                FontSize="18" 
@@ -62,7 +62,7 @@
                             <Border Background="#1A1A1A" BorderBrush="Cyan" BorderThickness="1" 
                                 Width="280" CornerRadius="8" Padding="15">
                                 <StackPanel>
-                                    <TextBlock Text="AUTHFORGE v1.0.1" FontSize="16" 
+                                    <TextBlock Text="AUTHFORGE v1.0" FontSize="16" 
                                            FontWeight="Bold" Foreground="Cyan" Margin="0,0,0,10"/>
                                     <Separator Background="Cyan" Opacity="0.3" Margin="0,0,0,10"/>
                                     <TextBlock Text="{DynamicResource m_SuiteName}" FontStyle="Italic" 
@@ -402,6 +402,78 @@
                                         <materialDesign:PackIcon Kind="ShieldLock" VerticalAlignment="Center" Foreground="White"/>
                                         <TextBlock Text="{DynamicResource m_GuideAes}" Margin="12,0,0,0" Opacity="0.8"/>
                                     </StackPanel>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </Grid>
+                    </Border>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Width="80">
+                            <materialDesign:PackIcon Kind="TwoFactorAuthentication" HorizontalAlignment="Center" Width="24" Height="24"/>
+                            <TextBlock Text="{DynamicResource m_Tab2FA}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Border Padding="24">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="400"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                                <TextBlock Text="{DynamicResource m_TotpConfig}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
+                                <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
+                                    <StackPanel>
+                                        <TextBox x:Name="TotpSecretInput" materialDesign:HintAssist.Hint="{DynamicResource m_HintEnterTotpSecret}"
+                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" CaretBrush="White"
+                                                 Foreground="White" FontSize="14" MaxLength="128" TextChanged="TotpSecretInput_TextChanged"/>
+
+                                        <Button Margin="0,20,0,0" Content="{DynamicResource m_BtnActivateTotp}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                                                materialDesign:ButtonAssist.CornerRadius="8" Click="ActivateTotp_Click" Height="45"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
+
+                                <materialDesign:Card Margin="0,20,0,0" Padding="12" Background="{DynamicResource MaterialDesignTextFieldBox}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Information" Opacity="0.5" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{DynamicResource m_TotpNote}" Width="340"
+                                                   Margin="10,0,0,0" FontSize="10" TextWrapping="Wrap" Opacity="0.6" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </StackPanel>
+
+                            <materialDesign:Card x:Name="TotpDisplayCard" Visibility="Collapsed" Background="#232323" Grid.Column="1" Padding="24" materialDesign:ElevationAssist.Elevation="Dp4">
+                                <StackPanel>
+                                    <TextBlock Text="{DynamicResource m_TotpLiveOutput}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
+
+                                    <Border Background="#1A1A1A" BorderBrush="Cyan" BorderThickness="1" CornerRadius="12" Padding="30" HorizontalAlignment="Center" Width="320">
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock x:Name="TotpCodeTxt" Text="000 000" FontSize="46" 
+                                                       FontWeight="Bold" 
+                                                       Foreground="Cyan" 
+                                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock x:Name="TotpCountdownTxt" Text="--" FontSize="13" Foreground="White" 
+                                                       Opacity="0.5" HorizontalAlignment="Center" Margin="0,12,0,16"/>
+
+                                            <ProgressBar x:Name="TotpTimeProgress" Minimum="0" Maximum="30" Value="30" Height="6" 
+                                                         Foreground="Cyan" Background="#333333" Width="220"
+                                                         HorizontalAlignment="Center" Style="{StaticResource MaterialDesignLinearProgressBar}"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Button Margin="0,24,0,0" 
+                                            Style="{StaticResource MaterialDesignFlatButton}" 
+                                            Foreground="Cyan"
+                                            HorizontalAlignment="Center"
+                                            Click="CopyTotpCode_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{DynamicResource m_BtnCopyTotpCode}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Grid>

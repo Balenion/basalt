@@ -3,6 +3,7 @@ using AuthForge.Core.Models;
 using AuthForge.Core.Services;
 using BCrypt.Net;
 using Microsoft.Win32;
+using OtpNet;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 
 namespace AuthForge.UI
 {
@@ -29,12 +31,26 @@ namespace AuthForge.UI
         private readonly BuiltInHashService _pbkdf2 = new();
         private readonly LegacyHashService _legacy = new();
 
+        private DispatcherTimer _totpTimer;
+        private string _currentBase32Secret = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
+            InitTotpTimer();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             string currentLang = AuthForge.UI.Properties.Settings.Default.UserLanguage;
             _isRussian = (currentLang == "ru");
+            string pattern = GetLocalizedText("m_ArgonDetails", "{0} MB, {1} Iterations, {2} Threads");
+            ActiveDetailsTxt.Text = string.Format(pattern, MemorySlider.Value, IterSlider.Value, ThreadSlider.Value);
+            ActiveDetailsTxt.Visibility = Visibility.Visible;
+        }
+
+        private void InitTotpTimer()
+        {
+            _totpTimer = new DispatcherTimer();
+            _totpTimer.Interval = TimeSpan.FromSeconds(1);
+            _totpTimer.Tick += TotpTimer_Tick;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -79,9 +95,12 @@ namespace AuthForge.UI
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Template! Please use the 'Generate Template' button to get the correct format.",
-                                    "Format Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    FilePathTxt.Text = "Invalid file selected";
+                    string errorMsg = GetLocalizedText("m_InvalidTemplateMessage", "Invalid Template!");
+                    string errorTitle = GetLocalizedText("m_InvalidTemplateTitle", "Format Error");
+                    string errorFile = GetLocalizedText("m_InvalidFile", "Invalid file selected");
+
+                    MessageBox.Show(errorMsg, errorTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    FilePathTxt.Text = errorFile;
                     FilePathTxt.BorderBrush = System.Windows.Media.Brushes.Red;
                     StartBtn.IsEnabled = false;
                 }
@@ -173,7 +192,7 @@ namespace AuthForge.UI
             {
                 ProgressArea.Visibility = Visibility.Visible;
                 StartBtn.IsEnabled = false;
-                StatusTxt.Text = "Reading Excel...";
+                StatusTxt.Text = GetLocalizedText("m_StatusReading", "Reading Excel...");
                 HashProgress.Value = 0;
 
                 var users = await Task.Run(() => _excelService.ReadEmployees(_selectedFile));
@@ -210,12 +229,14 @@ namespace AuthForge.UI
                 });
                 var results = resultsArray.ToList();
 
-                StatusTxt.Text = "Saving...";
+                StatusTxt.Text = GetLocalizedText("m_StatusSaving", "Saving...");
                 var savePicker = new SaveFileDialog { Filter = "Excel Files|*.xlsx", FileName = "Results.xlsx" };
                 if (savePicker.ShowDialog() == true)
                 {
                     await Task.Run(() => _excelService.SaveResults(savePicker.FileName, results));
-                    MessageBox.Show("Success!", "Forge Complete");
+                    string successMsg = GetLocalizedText("m_SuccessMessage", "Success!");
+                    string successTitle = GetLocalizedText("m_SuccessTitle", "Forge Complete");
+                    MessageBox.Show(successMsg, successTitle);
                 }
             }
             catch (Exception ex)
@@ -229,16 +250,22 @@ namespace AuthForge.UI
             }
         }
 
+        private string GetLocalizedText(string resourceKey, string defaultValue = "")
+        {
+            return Application.Current.TryFindResource(resourceKey) as string ?? defaultValue;
+        }
+
         private void UpdateActiveSettingsInfo()
         {
             if (ActiveMethodTxt == null) return;
 
             var selectedItem = (AlgoSelector.SelectedItem as ComboBoxItem)?.Content.ToString();
-            ActiveMethodTxt.Text = selectedItem ?? "Not Selected";
+            ActiveMethodTxt.Text = selectedItem ?? GetLocalizedText("m_NotSelected", "Not Selected"); ;
 
             if (AlgoSelector.SelectedIndex == 0)
             {
-                ActiveDetailsTxt.Text = $"{MemorySlider.Value} MB, {IterSlider.Value} Iterations, {ThreadSlider.Value} Threads";
+                string pattern = GetLocalizedText("m_ArgonDetails", "{0} MB, {1} Iterations, {2} Threads");
+                ActiveDetailsTxt.Text = string.Format(pattern, MemorySlider.Value, IterSlider.Value, ThreadSlider.Value);
                 ActiveDetailsTxt.Visibility = Visibility.Visible;
             }
             else if (AlgoSelector.SelectedIndex == 1)
@@ -249,12 +276,13 @@ namespace AuthForge.UI
             else if (AlgoSelector.SelectedIndex == 2)
             {
                 string hashAlgorithm = Pbkdf2AlgoSelector.SelectedIndex == 0 ? "SHA256" : "SHA512";
-                ActiveDetailsTxt.Text = $"Iterations {Pbkdf2IterSlider.Value}, HashAlgorithm {hashAlgorithm}";
+                string pattern = GetLocalizedText("m_Pbkdf2Details", "Iterations {0}, HashAlgorithm {1}");
+                ActiveDetailsTxt.Text = string.Format(pattern, Pbkdf2IterSlider.Value, hashAlgorithm);
                 ActiveDetailsTxt.Visibility = Visibility.Visible;
             }
             else if (AlgoSelector.SelectedIndex == 3)
             {
-                ActiveDetailsTxt.Text = UseSaltLegacy.IsChecked == true ? "With Salt" : "No Salt (Unsafe)";
+                ActiveDetailsTxt.Text = UseSaltLegacy.IsChecked == true ? GetLocalizedText("m_LegacyWithSalt", "With Salt") : GetLocalizedText("m_LegacyNoSalt", "No Salt (Unsafe)");
                 ActiveDetailsTxt.Visibility = Visibility.Visible;
             }
             else
@@ -307,7 +335,7 @@ namespace AuthForge.UI
             }
 
             ResultHashTxt.Text = result.Hash;
-            ResultSaltTxt.Text = result.Salt ?? "No salt used";
+            ResultSaltTxt.Text = result.Salt ?? GetLocalizedText("m_NoSaltUsed", "No salt used");
             AlgoInfoTxt.Text = $"Algorithm: {selectedHasher.AlgorithmName}";
         }
 
@@ -385,6 +413,7 @@ namespace AuthForge.UI
 
                 AuthForge.UI.Properties.Settings.Default.UserLanguage = targetLangCode;
                 AuthForge.UI.Properties.Settings.Default.Save();
+                UpdateActiveSettingsInfo();
             }
             catch (Exception ex)
             {
@@ -420,6 +449,95 @@ namespace AuthForge.UI
         private void Pbkdf2AlgoSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateActiveSettingsInfo();
+        }
+
+        private void TotpSecretInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TotpDisplayCard != null && TotpDisplayCard.Visibility == Visibility.Visible)
+            {
+                TotpDisplayCard.Visibility = Visibility.Collapsed;
+                _totpTimer?.Stop();
+            }
+        }
+
+        private void ActivateTotp_Click(object sender, RoutedEventArgs e)
+        {
+            string input = TotpSecretInput.Text?.Trim().ToUpper() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(input))
+            {
+                TotpDisplayCard.Visibility = Visibility.Collapsed;
+                _totpTimer.Stop();
+                return;
+            }
+
+            try
+            {
+                Base32Encoding.ToBytes(input);
+
+                _currentBase32Secret = input;
+                TotpDisplayCard.Visibility = Visibility.Visible;
+
+                UpdateTotpUI();
+                _totpTimer.Start();
+            }
+            catch
+            {
+                _totpTimer.Stop();
+                TotpDisplayCard.Visibility = Visibility.Collapsed;
+                string errorMsg = Application.Current.FindResource("m_TotpValidationError") as string ?? "Error";
+                string errorTitle = Application.Current.FindResource("m_TotpValidationTitle") as string ?? "Error";
+
+                MessageBox.Show(errorMsg, errorTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void TotpTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateTotpUI();
+        }
+
+        private void UpdateTotpUI()
+        {
+            if (string.IsNullOrEmpty(_currentBase32Secret)) return;
+
+            try
+            {
+                byte[] secretBytes = Base32Encoding.ToBytes(_currentBase32Secret);
+                var totp = new Totp(secretBytes);
+
+                string rawCode = totp.ComputeTotp();
+
+                if (rawCode.Length == 6)
+                {
+                    TotpCodeTxt.Text = $"{rawCode.Substring(0, 3)} {rawCode.Substring(3, 3)}";
+                }
+                else
+                {
+                    TotpCodeTxt.Text = rawCode;
+                }
+
+                long currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                int remainingSeconds = (int)(30 - (currentUnixTime % 30));
+
+                TotpTimeProgress.Value = remainingSeconds;
+                string countdownTemplate = Application.Current.FindResource("m_TotpCountdownFormat") as string ?? "{0}s";
+                TotpCountdownTxt.Text = string.Format(countdownTemplate, remainingSeconds);
+            }
+            catch
+            {
+                _totpTimer.Stop();
+                TotpDisplayCard.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void CopyTotpCode_Click(object sender, RoutedEventArgs e)
+        {
+            string codeToCopy = TotpCodeTxt.Text.Replace(" ", "");
+            if (!string.IsNullOrEmpty(codeToCopy) && codeToCopy != "000000")
+            {
+                Clipboard.SetText(codeToCopy);
+            }
         }
     }
 }

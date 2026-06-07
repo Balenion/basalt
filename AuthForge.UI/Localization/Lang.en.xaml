@@ -1,7 +1,33 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <System:String x:Key="m_TipChangeLanguage" xmlns:System="clr-namespace:System;assembly=mscorlib">Change interface language (EN / RU)</System:String>
-    
+
+    <System:String x:Key="m_StatusReading" xmlns:System="clr-namespace:System;assembly=mscorlib">Reading Excel...</System:String>
+    <System:String x:Key="m_StatusSaving" xmlns:System="clr-namespace:System;assembly=mscorlib">Saving...</System:String>
+    <System:String x:Key="m_SuccessTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Forge Complete</System:String>
+    <System:String x:Key="m_SuccessMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Success!</System:String>
+    <System:String x:Key="m_InvalidTemplateTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Format Error</System:String>
+    <System:String x:Key="m_InvalidTemplateMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Invalid Template! Please use the 'Generate Template' button to get the correct format.</System:String>
+    <System:String x:Key="m_NotSelected" xmlns:System="clr-namespace:System;assembly=mscorlib">Not Selected</System:String>
+    <System:String x:Key="m_ArgonDetails" xmlns:System="clr-namespace:System;assembly=mscorlib">{0} MB, {1} Iterations, {2} Threads</System:String>
+    <System:String x:Key="m_BCryptDetails" xmlns:System="clr-namespace:System;assembly=mscorlib">WorkFactor {0}</System:String>
+    <System:String x:Key="m_Pbkdf2Details" xmlns:System="clr-namespace:System;assembly=mscorlib">Iterations {0}, HashAlgorithm {1}</System:String>
+    <System:String x:Key="m_LegacyWithSalt" xmlns:System="clr-namespace:System;assembly=mscorlib">With Salt</System:String>
+    <System:String x:Key="m_LegacyNoSalt" xmlns:System="clr-namespace:System;assembly=mscorlib">No Salt (Unsafe)</System:String>
+    <System:String x:Key="m_NoSaltUsed" xmlns:System="clr-namespace:System;assembly=mscorlib">No salt used</System:String>
+    <System:String x:Key="m_AlgoInfoPrefix" xmlns:System="clr-namespace:System;assembly=mscorlib">Algorithm: {0}</System:String>
+    <System:String x:Key="m_InvalidFile" xmlns:System="clr-namespace:System;assembly=mscorlib">Invalid file selected</System:String>
+    <System:String x:Key="m_Tab2FA" xmlns:System="clr-namespace:System;assembly=mscorlib">2FA Codes</System:String>
+    <System:String x:Key="m_TotpConfig" xmlns:System="clr-namespace:System;assembly=mscorlib">TOTP CONFIGURATION</System:String>
+    <System:String x:Key="m_HintEnterTotpSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Enter Base32 secret key (no spaces)</System:String>
+    <System:String x:Key="m_BtnActivateTotp" xmlns:System="clr-namespace:System;assembly=mscorlib">Launch Generator</System:String>
+    <System:String x:Key="m_TotpNote" xmlns:System="clr-namespace:System;assembly=mscorlib">Note: Your system time must be synchronized with internet time for the codes to be generated accurately.</System:String>
+    <System:String x:Key="m_TotpLiveOutput" xmlns:System="clr-namespace:System;assembly=mscorlib">TWO-FACTOR AUTHENTICATION MONITOR</System:String>
+    <System:String x:Key="m_BtnCopyTotpCode" xmlns:System="clr-namespace:System;assembly=mscorlib">Copy Token</System:String>
+    <System:String x:Key="m_TotpValidationError" xmlns:System="clr-namespace:System;assembly=mscorlib">Invalid Base32 key format. Please check for extra characters.</System:String>
+    <System:String x:Key="m_TotpValidationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Validation Error</System:String>
+    <System:String x:Key="m_TotpCountdownFormat" xmlns:System="clr-namespace:System;assembly=mscorlib">Code updates in: {0}s</System:String>
+
     <System:String x:Key="m_SuiteName" xmlns:System="clr-namespace:System;assembly=mscorlib">Secure Identity Hashing Suite</System:String>
     <System:String x:Key="m_TechStack" xmlns:System="clr-namespace:System;assembly=mscorlib">Tech Stack:</System:String>
 

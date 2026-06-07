@@ -1,7 +1,33 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <System:String x:Key="m_TipChangeLanguage" xmlns:System="clr-namespace:System;assembly=mscorlib">Сменить язык интерфейса (RU / EN)</System:String>
-    
+
+    <System:String x:Key="m_StatusReading" xmlns:System="clr-namespace:System;assembly=mscorlib">Чтение файла Excel...</System:String>
+    <System:String x:Key="m_StatusSaving" xmlns:System="clr-namespace:System;assembly=mscorlib">Сохранение...</System:String>
+    <System:String x:Key="m_SuccessTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Готово</System:String>
+    <System:String x:Key="m_SuccessMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Успешно выполнено!</System:String>
+    <System:String x:Key="m_InvalidTemplateTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Ошибка формата</System:String>
+    <System:String x:Key="m_InvalidTemplateMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Неверный формат шаблона! Пожалуйста, используйте кнопку 'Создать шаблон', чтобы получить правильную структуру.</System:String>
+    <System:String x:Key="m_InvalidFile" xmlns:System="clr-namespace:System;assembly=mscorlib">Выбран недопустимый файл</System:String>
+    <System:String x:Key="m_NotSelected" xmlns:System="clr-namespace:System;assembly=mscorlib">Не выбрано</System:String>
+    <System:String x:Key="m_ArgonDetails" xmlns:System="clr-namespace:System;assembly=mscorlib">{0} МБ, {1} Итераций, {2} Потоков</System:String>
+    <System:String x:Key="m_BCryptDetails" xmlns:System="clr-namespace:System;assembly=mscorlib">WorkFactor {0}</System:String>
+    <System:String x:Key="m_Pbkdf2Details" xmlns:System="clr-namespace:System;assembly=mscorlib">Итераций: {0}, Алгоритм хэша: {1}</System:String>
+    <System:String x:Key="m_LegacyWithSalt" xmlns:System="clr-namespace:System;assembly=mscorlib">С солью</System:String>
+    <System:String x:Key="m_LegacyNoSalt" xmlns:System="clr-namespace:System;assembly=mscorlib">Без соли (Небезопасно)</System:String>
+    <System:String x:Key="m_NoSaltUsed" xmlns:System="clr-namespace:System;assembly=mscorlib">Соль не используется</System:String>
+    <System:String x:Key="m_AlgoInfoPrefix" xmlns:System="clr-namespace:System;assembly=mscorlib">Алгоритм: {0}</System:String>
+    <System:String x:Key="m_Tab2FA" xmlns:System="clr-namespace:System;assembly=mscorlib">2FA Коды</System:String>
+    <System:String x:Key="m_TotpConfig" xmlns:System="clr-namespace:System;assembly=mscorlib">ПАРАМЕТРЫ TOTP</System:String>
+    <System:String x:Key="m_HintEnterTotpSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Введите секретный ключ Base32 (без пробелов)</System:String>
+    <System:String x:Key="m_BtnActivateTotp" xmlns:System="clr-namespace:System;assembly=mscorlib">Запустить генератор</System:String>
+    <System:String x:Key="m_TotpNote" xmlns:System="clr-namespace:System;assembly=mscorlib">Внимание: для корректной генерации кодов время на вашем компьютере должно быть синхронизировано с мировым временем.</System:String>
+    <System:String x:Key="m_TotpLiveOutput" xmlns:System="clr-namespace:System;assembly=mscorlib">МОНИТОР ДВУХФАКТОРНОЙ АУТЕНТИФИКАЦИИ</System:String>
+    <System:String x:Key="m_BtnCopyTotpCode" xmlns:System="clr-namespace:System;assembly=mscorlib">Скопировать токен</System:String>
+    <System:String x:Key="m_TotpValidationError" xmlns:System="clr-namespace:System;assembly=mscorlib">Неверный формат Base32 ключа. Проверьте отсутствие лишних символов.</System:String>
+    <System:String x:Key="m_TotpValidationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Ошибка валидации</System:String>
+    <System:String x:Key="m_TotpCountdownFormat" xmlns:System="clr-namespace:System;assembly=mscorlib">Код обновится через: {0}с</System:String>
+
     <System:String x:Key="m_SuiteName" xmlns:System="clr-namespace:System;assembly=mscorlib">Инструменты безопасного хеширования</System:String>
     <System:String x:Key="m_TechStack" xmlns:System="clr-namespace:System;assembly=mscorlib">Технологический стек:</System:String>
 
