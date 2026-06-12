@@ -350,17 +350,31 @@ namespace AuthForge.UI
             if (Rb128.IsChecked == true) bits = 128;
             if (Rb512.IsChecked == true) bits = 512;
 
-            string newKey = _jwtService.GenerateSecretKey(bits);
+            byte[] keyBytes = _jwtService.GenerateSecretBytes(bits);
 
-            GeneratedKeyTxt.Text = newKey;
+            GeneratedKeyBase64Txt.Text = Convert.ToBase64String(keyBytes);
+
+            GeneratedKeyHexTxt.Text = Convert.ToHexString(keyBytes);
+
+            GeneratedKeyTotpTxt.Text = Base32Encoding.ToString(keyBytes);
         }
 
-        private void CopyGeneratedKey_Click(object sender, RoutedEventArgs e)
+        private void CopyBase64_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(GeneratedKeyTxt.Text))
-            {
-                Clipboard.SetText(GeneratedKeyTxt.Text);
-            }
+            if (!string.IsNullOrEmpty(GeneratedKeyBase64Txt.Text))
+                Clipboard.SetText(GeneratedKeyBase64Txt.Text);
+        }
+
+        private void CopyHex_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(GeneratedKeyHexTxt.Text))
+                Clipboard.SetText(GeneratedKeyHexTxt.Text);
+        }
+
+        private void CopyTotpSecret_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(GeneratedKeyTotpTxt.Text))
+                Clipboard.SetText(GeneratedKeyTotpTxt.Text);
         }
 
         private void UseSaltLegacy_Unchecked(object sender, RoutedEventArgs e)
@@ -538,6 +552,177 @@ namespace AuthForge.UI
             {
                 Clipboard.SetText(codeToCopy);
             }
+        }
+
+        private void CbName_Changed(object sender, RoutedEventArgs e)
+        {
+            if (CbSplitName == null) return;
+
+            if (CbName.IsChecked == true)
+            {
+                CbSplitName.IsEnabled = true;
+                CbSplitName.Opacity = 1.0;
+            }
+            else
+            {
+                CbSplitName.IsChecked = false;
+                CbSplitName.IsEnabled = false;
+                CbSplitName.Opacity = 0.5;
+            }
+        }
+
+        // Клик по кнопке генерации
+        private void GenerateSeed_Click(object sender, RoutedEventArgs e)
+        {
+            var options = new ExcelService.SeedOptions
+            {
+                Count = (int)SliderUserCount.Value,
+                PasswordLength = (int)SliderPassLength.Value,
+                IncludeName = CbName.IsChecked == true,
+                SplitName = CbSplitName.IsChecked == true,
+                IncludeEmail = CbEmail.IsChecked == true,
+                IncludePhone = CbPhone.IsChecked == true,
+                IncludeBirthDate = CbBirth.IsChecked == true,
+                IncludeRole = CbRole.IsChecked == true,
+                IncludeStatus = CbStatus.IsChecked == true,
+                Include2FA = Cb2FA.IsChecked == true,
+                TotpPercentage = (int)SliderTotpPercent.Value
+            };
+
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel Files (*.xlsx)|*.xlsx",
+                FileName = $"advanced_users_{options.Count}.xlsx",
+                Title = Application.Current.FindResource("m_SeedSaveTitle") as string ?? "Save Seed File"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    _excelService.GenerateAdvancedSeed(saveFileDialog.FileName, options);
+
+                    string successMsg = string.Format(
+                        Application.Current.FindResource("m_SeedSuccessMessage") as string ?? "Successfully generated {0} users.",
+                        options.Count
+                    );
+                    string successTitle = Application.Current.FindResource("m_SuccessTitle") as string ?? "Success";
+
+                    MessageBox.Show(successMsg, successTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error generating file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void TxtJwtInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProcessJwt();
+        }
+
+        private void TxtJwtSecret_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProcessJwt();
+        }
+
+        private void ProcessJwt()
+        {
+            // Защита от раннего вызова до инициализации компонентов
+            if (TxtJwtInput == null || TxtJwtHeader == null || TxtJwtPayload == null) return;
+
+            string token = TxtJwtInput.Text;
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                ResetJwtView();
+                return;
+            }
+
+            var decodeResult = _jwtService.DecodeToken(token);
+
+            if (decodeResult.IsValidStructure)
+            {
+                TxtJwtHeader.Text = decodeResult.HeaderJson;
+                TxtJwtPayload.Text = decodeResult.PayloadJson;
+                TxtJwtAlgorithm.Text = $"Algorithm: {decodeResult.Algorithm}";
+
+                // Обработка времени жизни токена (exp)
+                if (decodeResult.ExpirationTime.HasValue)
+                {
+                    string expStr = decodeResult.ExpirationTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                    if (decodeResult.ExpirationTime.Value < DateTime.Now)
+                    {
+                        TxtJwtExp.Text = $"Expired at: {expStr} (Token Expired)";
+                        TxtJwtExp.Foreground = new SolidColorBrush(Colors.Tomato);
+                    }
+                    else
+                    {
+                        TxtJwtExp.Text = $"Expires at: {expStr}";
+                        TxtJwtExp.Foreground = new SolidColorBrush(Colors.LightGreen);
+                    }
+                }
+                else
+                {
+                    TxtJwtExp.Text = "Expiration: No 'exp' claim found";
+                    TxtJwtExp.Foreground = new SolidColorBrush(Colors.Gray);
+                }
+
+                // Проверка криптографической подписи
+                string secret = TxtJwtSecret.Text;
+                if (string.IsNullOrEmpty(secret))
+                {
+                    BorderSigStatus.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#332A15")); // Темно-желтый
+                    IconSigStatus.Kind = MaterialDesignThemes.Wpf.PackIconKind.KeyAlertOutline;
+                    IconSigStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    TxtSigStatus.Text = Application.Current.FindResource("m_JwtStatusNoSecret") as string ?? "Structure Valid. Provide secret to check signature.";
+                    TxtSigStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                }
+                else
+                {
+                    bool isSignatureValid = _jwtService.VerifySignature(token, secret, decodeResult.Algorithm);
+                    if (isSignatureValid)
+                    {
+                        BorderSigStatus.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#14321A")); // Темно-зеленый
+                        IconSigStatus.Kind = MaterialDesignThemes.Wpf.PackIconKind.ShieldCheckOutline;
+                        IconSigStatus.Foreground = new SolidColorBrush(Colors.LightGreen);
+                        TxtSigStatus.Text = Application.Current.FindResource("m_JwtStatusValid") as string ?? "Signature Verified Successfully!";
+                        TxtSigStatus.Foreground = new SolidColorBrush(Colors.LightGreen);
+                    }
+                    else
+                    {
+                        BorderSigStatus.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3A1919")); // Темно-красный
+                        IconSigStatus.Kind = MaterialDesignThemes.Wpf.PackIconKind.ShieldAlertOutline;
+                        IconSigStatus.Foreground = new SolidColorBrush(Colors.Tomato);
+                        TxtSigStatus.Text = Application.Current.FindResource("m_JwtStatusInvalid") as string ?? "Invalid Signature!";
+                        TxtSigStatus.Foreground = new SolidColorBrush(Colors.Tomato);
+                    }
+                }
+            }
+            else
+            {
+                ResetJwtView();
+                BorderSigStatus.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3A1919"));
+                IconSigStatus.Kind = MaterialDesignThemes.Wpf.PackIconKind.CloseCircleOutline;
+                IconSigStatus.Foreground = new SolidColorBrush(Colors.Tomato);
+                TxtSigStatus.Text = Application.Current.FindResource("m_JwtStatusInvalidStructure") as string ?? "Invalid JWT token structure!";
+                TxtSigStatus.Foreground = new SolidColorBrush(Colors.Tomato);
+            }
+        }
+
+        private void ResetJwtView()
+        {
+            TxtJwtHeader.Text = string.Empty;
+            TxtJwtPayload.Text = string.Empty;
+            TxtJwtAlgorithm.Text = "Algorithm: —";
+            TxtJwtExp.Text = "Expiration: —";
+            TxtJwtExp.Foreground = new SolidColorBrush(Colors.Gray);
+
+            BorderSigStatus.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D2D2D"));
+            IconSigStatus.Kind = MaterialDesignThemes.Wpf.PackIconKind.HelpCircleOutline;
+            IconSigStatus.Foreground = new SolidColorBrush(Colors.Gray);
+            TxtSigStatus.Text = Application.Current.FindResource("m_JwtStatusWaiting") as string ?? "Awaiting JWT token input...";
+            TxtSigStatus.Foreground = new SolidColorBrush(Colors.Gray);
         }
     }
 }

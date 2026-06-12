@@ -27,6 +27,38 @@
     <System:String x:Key="m_TotpValidationError" xmlns:System="clr-namespace:System;assembly=mscorlib">Invalid Base32 key format. Please check for extra characters.</System:String>
     <System:String x:Key="m_TotpValidationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Validation Error</System:String>
     <System:String x:Key="m_TotpCountdownFormat" xmlns:System="clr-namespace:System;assembly=mscorlib">Code updates in: {0}s</System:String>
+    <System:String x:Key="m_HexSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">HEX Encoded Secret:</System:String>
+    <System:String x:Key="m_TotpKeySecret" xmlns:System="clr-namespace:System;assembly=mscorlib">TOTP Secret (Base32 / Google Auth):</System:String>
+    <System:String x:Key="m_TabSeedGen" xmlns:System="clr-namespace:System;assembly=mscorlib">Seed Gen</System:String>
+    <System:String x:Key="m_SeedParams" xmlns:System="clr-namespace:System;assembly=mscorlib">Data Generation Parameters</System:String>
+    <System:String x:Key="m_UserCount" xmlns:System="clr-namespace:System;assembly=mscorlib">Number of Users</System:String>
+    <System:String x:Key="m_GeneratedPassLength" xmlns:System="clr-namespace:System;assembly=mscorlib">Random Password Length</System:String>
+    <System:String x:Key="m_BtnGenerateSeed" xmlns:System="clr-namespace:System;assembly=mscorlib">Generate Packet (.XLSX)</System:String>
+    <System:String x:Key="m_SeedWorkflowTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">How to use generated Seed Data:</System:String>
+    <System:String x:Key="m_SeedStep1" xmlns:System="clr-namespace:System;assembly=mscorlib">Adjust sliders to set the size of your test database and password length, then click generate to save the file.</System:String>
+    <System:String x:Key="m_SeedStep2" xmlns:System="clr-namespace:System;assembly=mscorlib">The output file is 100% compatible with the "Excel Integration" tab. You can instantly load it there for mass hashing via Argon2id or BCrypt.</System:String>
+    <System:String x:Key="m_SeedStep3" xmlns:System="clr-namespace:System;assembly=mscorlib">Use the final file for rapid database seeding, load testing of your authentication flows, or mock server provisioning.</System:String>
+    <System:String x:Key="m_SeedZeroKnowledgeNote" xmlns:System="clr-namespace:System;assembly=mscorlib">Data generation is performed entirely offline. The algorithm utilizes a cryptographic random number generator (CSPRNG) ensuring secure, unique passwords.</System:String>
+    <System:String x:Key="m_SeedSaveTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Save Seed Users File</System:String>
+    <System:String x:Key="m_SeedSuccessMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">A packet of {0} mock users has been successfully generated and saved!</System:String>
+    <System:String x:Key="m_AdditionalFields" xmlns:System="clr-namespace:System;assembly=mscorlib">Additional Entity Fields</System:String>
+    <System:String x:Key="m_FieldFullName" xmlns:System="clr-namespace:System;assembly=mscorlib">Include Full Name</System:String>
+    <System:String x:Key="m_FieldSplitName" xmlns:System="clr-namespace:System;assembly=mscorlib">Split into columns (LastName/FirstName/MiddleName)</System:String>
+    <System:String x:Key="m_FieldEmail" xmlns:System="clr-namespace:System;assembly=mscorlib">Email Address</System:String>
+    <System:String x:Key="m_FieldPhone" xmlns:System="clr-namespace:System;assembly=mscorlib">Phone Number</System:String>
+    <System:String x:Key="m_FieldBirth" xmlns:System="clr-namespace:System;assembly=mscorlib">Birth Date</System:String>
+    <System:String x:Key="m_FieldRole" xmlns:System="clr-namespace:System;assembly=mscorlib">Security Roles (Admin, User, Manager)</System:String>
+    <System:String x:Key="m_FieldStatus" xmlns:System="clr-namespace:System;assembly=mscorlib">Account Status (Active, Pending, Suspended)</System:String>
+    <System:String x:Key="m_Field2FA" xmlns:System="clr-namespace:System;assembly=mscorlib">Generate 2FA Secrets (TOTP)</System:String>
+    <System:String x:Key="m_TotpSaturation" xmlns:System="clr-namespace:System;assembly=mscorlib">Percentage of users with active 2FA</System:String>
+    <System:String x:Key="m_JwtInputTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Encoded JWT Token</System:String>
+    <System:String x:Key="m_JwtVerificationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Cryptographic Signature Verification</System:String>
+    <System:String x:Key="m_JwtStatusWaiting" xmlns:System="clr-namespace:System;assembly=mscorlib">Awaiting JWT token input...</System:String>
+    <System:String x:Key="m_JwtStatusNoSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Structure valid. Provide secret to check signature.</System:String>
+    <System:String x:Key="m_JwtStatusValid" xmlns:System="clr-namespace:System;assembly=mscorlib">Signature verified successfully!</System:String>
+    <System:String x:Key="m_JwtStatusInvalid" xmlns:System="clr-namespace:System;assembly=mscorlib">Invalid signature!</System:String>
+    <System:String x:Key="m_JwtStatusInvalidStructure" xmlns:System="clr-namespace:System;assembly=mscorlib">Error: Invalid JWT token structure!</System:String>
+    <System:String x:Key="m_JwtTabTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">JWT Decoder</System:String>
 
     <System:String x:Key="m_SuiteName" xmlns:System="clr-namespace:System;assembly=mscorlib">Secure Identity Hashing Suite</System:String>
     <System:String x:Key="m_TechStack" xmlns:System="clr-namespace:System;assembly=mscorlib">Tech Stack:</System:String>
@@ -80,6 +112,7 @@
     <System:String x:Key="m_Base64Secret" xmlns:System="clr-namespace:System;assembly=mscorlib">Base64 Encoded Secret:</System:String>
     <System:String x:Key="m_TipCopyKey" xmlns:System="clr-namespace:System;assembly=mscorlib">Copy Key</System:String>
     <System:String x:Key="m_UsageGuide" xmlns:System="clr-namespace:System;assembly=mscorlib">USAGE GUIDE</System:String>
-    <System:String x:Key="m_GuideJwt" xmlns:System="clr-namespace:System;assembly=mscorlib">Best for 'Jwt:Key' in appsettings.json</System:String>
-    <System:String x:Key="m_GuideAes" xmlns:System="clr-namespace:System;assembly=mscorlib">Can be used as an AES Encryption Salt</System:String>
+    <System:String x:Key="m_GuideJwt" xmlns:System="clr-namespace:System;assembly=mscorlib">Base64 string is used as a Secret Signing Key for JWT tokens</System:String>
+    <System:String x:Key="m_GuideHex" xmlns:System="clr-namespace:System;assembly=mscorlib">HEX format is perfect for symmetric encryption keys (AES), database configs, or storing raw binary secrets</System:String>
+    <System:String x:Key="m_GuideTotp" xmlns:System="clr-namespace:System;assembly=mscorlib">Base32 key is ready for integration into two-factor authentication (TOTP) algorithms and validation via Google Authenticator</System:String>
 </ResourceDictionary>

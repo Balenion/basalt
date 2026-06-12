@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AuthForge.UI" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AuthForge" Height="650" Width="1000"
+        Title="AuthForge" Height="700" Width="1200"
         WindowStyle="None" 
         AllowsTransparency="True"
         Background="Transparent"
@@ -103,7 +103,7 @@
 
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Width="80">
+                        <StackPanel Width="70">
                             <materialDesign:PackIcon Kind="FileExcel" HorizontalAlignment="Center" Width="24" Height="24"/>
                             <TextBlock Text="{DynamicResource m_TabExcel}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
@@ -270,7 +270,7 @@
 
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Width="80">
+                        <StackPanel Width="70">
                             <materialDesign:PackIcon Kind="Fingerprint" HorizontalAlignment="Center" Width="24" Height="24"/>
                             <TextBlock Text="{DynamicResource m_TabSingle}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
@@ -345,7 +345,7 @@
 
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Width="80">
+                        <StackPanel Width="70">
                             <materialDesign:PackIcon Kind="KeyChain" HorizontalAlignment="Center" Width="24" Height="24"/>
                             <TextBlock Text="{DynamicResource m_TabKeys}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
@@ -380,27 +380,61 @@
                             <materialDesign:Card Background="#232323" Grid.Column="1" Padding="24" materialDesign:ElevationAssist.Elevation="Dp4">
                                 <StackPanel>
                                     <TextBlock Text="{DynamicResource m_SecretKeyOutput}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,16"/>
+
                                     <TextBlock Text="{DynamicResource m_Base64Secret}" Opacity="0.6" FontSize="12"/>
-                                    <Grid Margin="0,4,0,24">
-                                        <TextBox x:Name="GeneratedKeyTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                                             IsReadOnly="True" TextWrapping="Wrap" 
-                                             MinHeight="100" FontSize="14" FontWeight="Bold" Foreground="White"/>
-                                        <Button HorizontalAlignment="Right" VerticalAlignment="Top" 
-                                             Margin="0,8,8,0" Padding="4" Height="30" Width="30"
-                                             Style="{StaticResource MaterialDesignToolForegroundButton}"
-                                             Click="CopyGeneratedKey_Click" ToolTip="{DynamicResource m_TipCopyKey}">
+                                    <Grid Margin="0,4,0,16">
+                                        <TextBox x:Name="GeneratedKeyBase64Txt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                                                 IsReadOnly="True" TextWrapping="Wrap" Padding="10,10,45,10"
+                                                 MinHeight="50" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                                        <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                                Margin="0,0,8,0" Padding="4" Height="30" Width="30"
+                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                Click="CopyBase64_Click" ToolTip="{DynamicResource m_TipCopyKey}">
                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
                                         </Button>
                                     </Grid>
+
+                                    <TextBlock Text="{DynamicResource m_HexSecret}" Opacity="0.6" FontSize="12"/>
+                                    <Grid Margin="0,4,0,16">
+                                        <TextBox x:Name="GeneratedKeyHexTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                                                 IsReadOnly="True" TextWrapping="Wrap" Padding="10,10,45,10"
+                                                 MinHeight="50" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                                        <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                                Margin="0,0,8,0" Padding="4" Height="30" Width="30"
+                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                Click="CopyHex_Click" ToolTip="{DynamicResource m_TipCopyKey}">
+                                            <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
+                                        </Button>
+                                    </Grid>
+
+                                    <TextBlock Text="{DynamicResource m_TotpKeySecret}" Opacity="0.6" FontSize="12"/>
+                                    <Grid Margin="0,4,0,24">
+                                        <TextBox x:Name="GeneratedKeyTotpTxt" Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                                                 IsReadOnly="True" TextWrapping="Wrap" Padding="10,10,45,10"
+                                                 MinHeight="50" FontSize="14" FontWeight="Bold" Foreground="Cyan"/>
+                                        <Button HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                                Margin="0,0,8,0" Padding="4" Height="30" Width="30"
+                                                Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                Click="CopyTotpSecret_Click" ToolTip="{DynamicResource m_TipCopyKey}">
+                                            <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
+                                        </Button>
+                                    </Grid>
+
                                     <TextBlock Text="{DynamicResource m_UsageGuide}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8" FontSize="16"/>
                                     <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,0,0,16"/>
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                        <materialDesign:PackIcon Kind="DotNet" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="{DynamicResource m_GuideJwt}" Margin="12,0,0,0" Opacity="0.8"/>
+                                        <materialDesign:PackIcon Kind="DotNet" VerticalAlignment="Center" Foreground="White" Width="18" Height="18"/>
+                                        <TextBlock Text="{DynamicResource m_GuideJwt}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="450"/>
                                     </StackPanel>
+
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                        <materialDesign:PackIcon Kind="ShieldLock" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock Text="{DynamicResource m_GuideAes}" Margin="12,0,0,0" Opacity="0.8"/>
+                                        <materialDesign:PackIcon Kind="Database" VerticalAlignment="Center" Foreground="White" Width="18" Height="18"/>
+                                        <TextBlock Text="{DynamicResource m_GuideHex}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="450"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                        <materialDesign:PackIcon Kind="ClockFast" VerticalAlignment="Center" Foreground="White" Width="18" Height="18"/>
+                                        <TextBlock Text="{DynamicResource m_GuideTotp}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="450"/>
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>
@@ -410,7 +444,7 @@
 
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Width="80">
+                        <StackPanel Width="70">
                             <materialDesign:PackIcon Kind="TwoFactorAuthentication" HorizontalAlignment="Center" Width="24" Height="24"/>
                             <TextBlock Text="{DynamicResource m_Tab2FA}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
                         </StackPanel>
@@ -476,6 +510,178 @@
                                     </Button>
                                 </StackPanel>
                             </materialDesign:Card>
+                        </Grid>
+                    </Border>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Width="70">
+                            <materialDesign:PackIcon Kind="Database" HorizontalAlignment="Center" Width="24" Height="24"/>
+                            <TextBlock Text="{DynamicResource m_TabSeedGen}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Border Padding="24">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="420"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Padding="0,0,10,0">
+                                <StackPanel>
+                                    <TextBlock Text="{DynamicResource m_SeedParams}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
+                                    <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2" Margin="0,0,0,16">
+                                        <StackPanel>
+                                            <TextBlock Margin="0,0,0,4" Opacity="0.8">
+                                                       <Run Text="{DynamicResource m_UserCount}"/>: 
+                                                       <Run Text="{Binding ElementName=SliderUserCount, Path=Value}" FontWeight="Bold" Foreground="Cyan"/>
+                                            </TextBlock>
+                                            <Slider x:Name="SliderUserCount" Minimum="10" Maximum="1000" Value="100" TickFrequency="10" IsSnapToTickEnabled="True" Margin="0,0,0,16"/>
+
+                                            <TextBlock Margin="0,0,0,4" Opacity="0.8">
+                                                       <Run Text="{DynamicResource m_GeneratedPassLength}"/>: 
+                                                       <Run Text="{Binding ElementName=SliderPassLength, Path=Value}" FontWeight="Bold" Foreground="Cyan"/>
+                                            </TextBlock>
+                                            <Slider x:Name="SliderPassLength" Minimum="8" Maximum="32" Value="14" TickFrequency="1" IsSnapToTickEnabled="True" Margin="0,0,0,16"/>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                    <TextBlock Text="{DynamicResource m_AdditionalFields}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,4,0,8"/>
+                                    <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2" Margin="0,0,0,16">
+                                        <StackPanel>
+                                            <CheckBox x:Name="CbName" Content="{DynamicResource m_FieldFullName}" Margin="0,0,0,8" Checked="CbName_Changed" Unchecked="CbName_Changed"/>
+
+                                            <CheckBox x:Name="CbSplitName" Content="{DynamicResource m_FieldSplitName}" Margin="24,0,0,12" FontSize="12" IsEnabled="False" Opacity="0.5"/>
+
+                                            <CheckBox x:Name="CbEmail" Content="{DynamicResource m_FieldEmail}" Margin="0,0,0,12"/>
+                                            <CheckBox x:Name="CbPhone" Content="{DynamicResource m_FieldPhone}" Margin="0,0,0,12"/>
+                                            <CheckBox x:Name="CbBirth" Content="{DynamicResource m_FieldBirth}" Margin="0,0,0,12"/>
+                                            <CheckBox x:Name="CbRole" Content="{DynamicResource m_FieldRole}" Margin="0,0,0,12"/>
+                                            <CheckBox x:Name="CbStatus" Content="{DynamicResource m_FieldStatus}" Margin="0,0,0,16"/>
+
+                                            <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,0,0,16"/>
+
+                                            <CheckBox x:Name="Cb2FA" Content="{DynamicResource m_Field2FA}" Margin="0,0,0,8"/>
+                                            <StackPanel IsEnabled="{Binding ElementName=Cb2FA, Path=IsChecked}">
+                                                <TextBlock Margin="0,4,0,4" Opacity="0.8" FontSize="12">
+                                                          <Run Text="{DynamicResource m_TotpSaturation}"/>: 
+                                                          <Run Text="{Binding ElementName=SliderTotpPercent, Path=Value}" FontWeight="Bold" Foreground="Orange"/>%
+                                                </TextBlock>
+                                                <Slider x:Name="SliderTotpPercent" Minimum="10" Maximum="100" Value="30" TickFrequency="5" IsSnapToTickEnabled="True"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+
+                                    <Button Content="{DynamicResource m_BtnGenerateSeed}" Style="{StaticResource MaterialDesignRaisedSecondaryButton}" Click="GenerateSeed_Click" Height="45" Margin="0,4,0,24"/>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                            <materialDesign:Card Background="#232323" Grid.Column="1" Padding="24" materialDesign:ElevationAssist.Elevation="Dp4" VerticalAlignment="Top" Margin="10,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="{DynamicResource m_SeedWorkflowTitle}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,8" FontSize="16"/>
+                                    <Border Background="{DynamicResource MaterialDesignDivider}" Height="1" Margin="0,0,0,16"/>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                        <materialDesign:PackIcon Kind="Numeric1Circle" VerticalAlignment="Center" Foreground="Cyan" Width="20" Height="20"/>
+                                        <TextBlock Text="{DynamicResource m_SeedStep1}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="430"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                        <materialDesign:PackIcon Kind="Numeric2Circle" VerticalAlignment="Center" Foreground="Cyan" Width="20" Height="20"/>
+                                        <TextBlock Text="{DynamicResource m_SeedStep2}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="430"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                        <materialDesign:PackIcon Kind="Numeric3Circle" VerticalAlignment="Center" Foreground="Cyan" Width="20" Height="20"/>
+                                        <TextBlock Text="{DynamicResource m_SeedStep3}" Margin="12,0,0,0" Opacity="0.8" TextWrapping="Wrap" Width="430"/>
+                                    </StackPanel>
+
+                                    <materialDesign:Card Margin="0,16,0,0" Padding="12" Background="{DynamicResource MaterialDesignTextFieldBox}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ShieldCheck" Foreground="LightGreen" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{DynamicResource m_SeedZeroKnowledgeNote}" Width="400" Margin="10,0,0,0" FontSize="11" TextWrapping="Wrap" Opacity="0.7"/>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </Grid>
+                    </Border>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Width="70">
+                            <materialDesign:PackIcon Kind="ShieldKeyOutline" HorizontalAlignment="Center" Width="24" Height="24"/>
+                            <TextBlock Text="{DynamicResource m_JwtTabTitle}" HorizontalAlignment="Center" FontSize="10" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Border Padding="24">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="450"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                                <TextBlock Text="{DynamicResource m_JwtInputTitle}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,0,0,8"/>
+                                <TextBox x:Name="TxtJwtInput" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                         Height="220" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                                         materialDesign:HintAssist.Hint="Paste encoded JWT token here..." FontSize="12"
+                                         TextChanged="TxtJwtInput_TextChanged"/>
+
+                                <TextBlock Text="{DynamicResource m_JwtVerificationTitle}" Style="{StaticResource MaterialDesignOverlineTextBlock}" Opacity="0.6" Margin="0,16,0,8"/>
+                                <materialDesign:Card Background="#232323" Padding="16" materialDesign:ElevationAssist.Elevation="Dp2">
+                                    <StackPanel>
+                                        <TextBox x:Name="TxtJwtSecret" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                 materialDesign:HintAssist.Hint="Signature Verification Secret" Foreground="White"
+                                                 Margin="0,0,0,16" TextChanged="TxtJwtSecret_TextChanged"/>
+
+                                        <Border x:Name="BorderSigStatus" Background="#2D2D2D" CornerRadius="4" Padding="12,8">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon x:Name="IconSigStatus" Kind="HelpCircleOutline" Foreground="Gray" VerticalAlignment="Center" Width="20" Height="20"/>
+                                                <TextBlock x:Name="TxtSigStatus" Text="{DynamicResource m_JwtStatusWaiting}" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </StackPanel>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="160"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Margin="0,0,0,12">
+                                    <TextBlock Text="HEADER: ALGORITHM &amp; TOKEN TYPE" Style="{StaticResource MaterialDesignOverlineTextBlock}" Foreground="Orange" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="TxtJwtHeader" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="125"
+                                             IsReadOnly="True" FontFamily="Consolas" FontSize="12" Background="#1E1E1E" Foreground="Orange"
+                                             VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1" Margin="0,0,0,12">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="PAYLOAD: DATA / CLAIMS" Style="{StaticResource MaterialDesignOverlineTextBlock}" Foreground="LightBlue" Margin="0,0,0,4"/>
+                                    <TextBox Grid.Row="1" x:Name="TxtJwtPayload" Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                             IsReadOnly="True" FontFamily="Consolas" FontSize="12" Background="#1E1E1E" Foreground="Cyan"
+                                             VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+                                </Grid>
+
+                                <materialDesign:Card Grid.Row="2" Background="#1A1A1A" Padding="12,4" VerticalAlignment="Center">
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                            <materialDesign:PackIcon Kind="ClockOutline" VerticalAlignment="Center" Opacity="0.6"/>
+                                            <TextBlock x:Name="TxtJwtExp" Text="Expiration: —" Margin="8,0,0,0" VerticalAlignment="Center" Opacity="0.8" FontSize="12"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="TxtJwtAlgorithm" Text="Algorithm: —" HorizontalAlignment="Right" VerticalAlignment="Center" Opacity="0.6" FontSize="12" FontWeight="Bold"/>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </Grid>
                         </Grid>
                     </Border>
                 </TabItem>

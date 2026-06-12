@@ -4,7 +4,7 @@
 
     <System:String x:Key="m_StatusReading" xmlns:System="clr-namespace:System;assembly=mscorlib">Чтение файла Excel...</System:String>
     <System:String x:Key="m_StatusSaving" xmlns:System="clr-namespace:System;assembly=mscorlib">Сохранение...</System:String>
-    <System:String x:Key="m_SuccessTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Готово</System:String>
+    <System:String x:Key="m_SuccessTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Успех</System:String>
     <System:String x:Key="m_SuccessMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Успешно выполнено!</System:String>
     <System:String x:Key="m_InvalidTemplateTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Ошибка формата</System:String>
     <System:String x:Key="m_InvalidTemplateMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Неверный формат шаблона! Пожалуйста, используйте кнопку 'Создать шаблон', чтобы получить правильную структуру.</System:String>
@@ -27,6 +27,38 @@
     <System:String x:Key="m_TotpValidationError" xmlns:System="clr-namespace:System;assembly=mscorlib">Неверный формат Base32 ключа. Проверьте отсутствие лишних символов.</System:String>
     <System:String x:Key="m_TotpValidationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Ошибка валидации</System:String>
     <System:String x:Key="m_TotpCountdownFormat" xmlns:System="clr-namespace:System;assembly=mscorlib">Код обновится через: {0}с</System:String>
+    <System:String x:Key="m_HexSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Секрет в формате HEX (Шестнадцатеричный):</System:String>
+    <System:String x:Key="m_TotpKeySecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Секрет для TOTP (Base32 / Google Auth):</System:String>
+    <System:String x:Key="m_TabSeedGen" xmlns:System="clr-namespace:System;assembly=mscorlib">Seed Gen</System:String>
+    <System:String x:Key="m_SeedParams" xmlns:System="clr-namespace:System;assembly=mscorlib">Параметры генерации данных</System:String>
+    <System:String x:Key="m_UserCount" xmlns:System="clr-namespace:System;assembly=mscorlib">Количество пользователей</System:String>
+    <System:String x:Key="m_GeneratedPassLength" xmlns:System="clr-namespace:System;assembly=mscorlib">Длина случайных паролей</System:String>
+    <System:String x:Key="m_BtnGenerateSeed" xmlns:System="clr-namespace:System;assembly=mscorlib">Сгенерировать пакет (.XLSX)</System:String>
+    <System:String x:Key="m_SeedWorkflowTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Как использовать тестовые данные (Seed Data):</System:String>
+    <System:String x:Key="m_SeedStep1" xmlns:System="clr-namespace:System;assembly=mscorlib">Укажите ползунками необходимый объем тестовой базы и длину генерируемых паролей, затем сохраните файл.</System:String>
+    <System:String x:Key="m_SeedStep2" xmlns:System="clr-namespace:System;assembly=mscorlib">Полученный файл полностью совместим со вкладкой «Excel Integration». Вы можете сразу загрузить его туда для массового хэширования через Argon2id или BCrypt.</System:String>
+    <System:String x:Key="m_SeedStep3" xmlns:System="clr-namespace:System;assembly=mscorlib">Используйте готовый файл для быстрой заливки (сидирования) локальных СУБД, нагрузочного тестирования систем авторизации или наполнения мок-серверов.</System:String>
+    <System:String x:Key="m_SeedZeroKnowledgeNote" xmlns:System="clr-namespace:System;assembly=mscorlib">Генерация происходит полностью на вашем компьютере. Алгоритм использует криптографический генератор случайных чисел (CSPRNG), обеспечивая уникальность паролей.</System:String>
+    <System:String x:Key="m_SeedSaveTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Сохранение тестовых пользователей</System:String>
+    <System:String x:Key="m_SeedSuccessMessage" xmlns:System="clr-namespace:System;assembly=mscorlib">Пакет из {0} тестовых пользователей успешно сгенерирован и сохранен!</System:String>
+    <System:String x:Key="m_AdditionalFields" xmlns:System="clr-namespace:System;assembly=mscorlib">Дополнительные поля сущности</System:String>
+    <System:String x:Key="m_FieldFullName" xmlns:System="clr-namespace:System;assembly=mscorlib">Включить ФИО (Full Name)</System:String>
+    <System:String x:Key="m_FieldSplitName" xmlns:System="clr-namespace:System;assembly=mscorlib">Разделить на три колонки (Фамилия/Имя/Отч.)</System:String>
+    <System:String x:Key="m_FieldEmail" xmlns:System="clr-namespace:System;assembly=mscorlib">Электронная почта (Email)</System:String>
+    <System:String x:Key="m_FieldPhone" xmlns:System="clr-namespace:System;assembly=mscorlib">Номер телефона (Phone)</System:String>
+    <System:String x:Key="m_FieldBirth" xmlns:System="clr-namespace:System;assembly=mscorlib">Дата рождения (Birth Date)</System:String>
+    <System:String x:Key="m_FieldRole" xmlns:System="clr-namespace:System;assembly=mscorlib">Роли безопасности (Admin, User, Manager)</System:String>
+    <System:String x:Key="m_FieldStatus" xmlns:System="clr-namespace:System;assembly=mscorlib">Статус записи (Active, Pending, Suspended)</System:String>
+    <System:String x:Key="m_Field2FA" xmlns:System="clr-namespace:System;assembly=mscorlib">Сгенерировать секреты для 2FA (TOTP)</System:String>
+    <System:String x:Key="m_TotpSaturation" xmlns:System="clr-namespace:System;assembly=mscorlib">Процент пользователей с включенным 2FA</System:String>
+    <System:String x:Key="m_JwtInputTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Закодированный JWT Токен</System:String>
+    <System:String x:Key="m_JwtVerificationTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">Криптографическая верификация подписи</System:String>
+    <System:String x:Key="m_JwtStatusWaiting" xmlns:System="clr-namespace:System;assembly=mscorlib">Ожидание ввода JWT токена...</System:String>
+    <System:String x:Key="m_JwtStatusNoSecret" xmlns:System="clr-namespace:System;assembly=mscorlib">Структура верна. Введите секрет для проверки подписи.</System:String>
+    <System:String x:Key="m_JwtStatusValid" xmlns:System="clr-namespace:System;assembly=mscorlib">Подпись токена успешно подтверждена!</System:String>
+    <System:String x:Key="m_JwtStatusInvalid" xmlns:System="clr-namespace:System;assembly=mscorlib">Невалидная подпись токена!</System:String>
+    <System:String x:Key="m_JwtStatusInvalidStructure" xmlns:System="clr-namespace:System;assembly=mscorlib">Ошибка: Неверная структура JWT токена!</System:String>
+    <System:String x:Key="m_JwtTabTitle" xmlns:System="clr-namespace:System;assembly=mscorlib">JWT Декодер</System:String>
 
     <System:String x:Key="m_SuiteName" xmlns:System="clr-namespace:System;assembly=mscorlib">Инструменты безопасного хеширования</System:String>
     <System:String x:Key="m_TechStack" xmlns:System="clr-namespace:System;assembly=mscorlib">Технологический стек:</System:String>
@@ -80,6 +112,7 @@
     <System:String x:Key="m_Base64Secret" xmlns:System="clr-namespace:System;assembly=mscorlib">Секрет в кодировке Base64:</System:String>
     <System:String x:Key="m_TipCopyKey" xmlns:System="clr-namespace:System;assembly=mscorlib">Копировать ключ</System:String>
     <System:String x:Key="m_UsageGuide" xmlns:System="clr-namespace:System;assembly=mscorlib">РУКОВОДСТВО ПО ИСПОЛЬЗОВАНИЮ</System:String>
-    <System:String x:Key="m_GuideJwt" xmlns:System="clr-namespace:System;assembly=mscorlib">Идеально для 'Jwt:Key' в appsettings.json</System:String>
-    <System:String x:Key="m_GuideAes" xmlns:System="clr-namespace:System;assembly=mscorlib">Можно использовать как соль для AES-шифрования</System:String>
+    <System:String x:Key="m_GuideJwt" xmlns:System="clr-namespace:System;assembly=mscorlib">Строка Base64 используется в качестве секретного ключа (Signing Key) для подписи JWT-токенов</System:String>
+    <System:String x:Key="m_GuideHex" xmlns:System="clr-namespace:System;assembly=mscorlib">Формат HEX отлично подходит для ключей симметричного шифрования (AES), конфигураций СУБД или хранения бинарных секретов</System:String>
+    <System:String x:Key="m_GuideTotp" xmlns:System="clr-namespace:System;assembly=mscorlib">Ключ Base32 полностью готов для интеграции в алгоритмы двухфакторной аутентификации (TOTP) и проверки в Google Authenticator</System:String>
 </ResourceDictionary>
