@@ -3,7 +3,7 @@
     <System:String x:Key="m_TipChangeLanguage" xmlns:System="clr-namespace:System;assembly=mscorlib">Сменить язык интерфейса (RU / EN)</System:String>
 
     <System:String x:Key="m_AboutTagline" xmlns:System="clr-namespace:System;assembly=mscorlib">Безопасная, полностью автономная криптографическая рабочая станция для разработчиков.</System:String>
-    <System:String x:Key="m_AboutDescription" xmlns:System="clr-namespace:System;assembly=mscorlib">Basalt — это легковесный локальный инструмент, созданный для упрощения рутинных задач криптографии и аутентификации. Разработанный на основе строгого принципа zero-knowledge, он работает исключительно на вашем устройстве, гарантируя, что конфиденциальные токены, ключи и данные никогда не попадут в сеть.</System:String>
+    <System:String x:Key="m_AboutDescription" xmlns:System="clr-namespace:System;assembly=mscorlib">Basalt – это легковесный локальный инструмент, созданный для упрощения рутинных задач криптографии и аутентификации. Разработанный на основе строгого принципа zero-knowledge, он работает исключительно на вашем устройстве, гарантируя, что конфиденциальные токены, ключи и данные никогда не попадут в сеть.</System:String>
     <System:String x:Key="m_AboutModulesHeader" xmlns:System="clr-namespace:System;assembly=mscorlib">ДОСТУПНЫЕ СТАНЦИИ И МОДУЛИ</System:String>
 
     <System:String x:Key="m_AboutDescExcel" xmlns:System="clr-namespace:System;assembly=mscorlib">Высокопроизводительное массовое хэширование паролей с удобной интеграцией Excel.</System:String>

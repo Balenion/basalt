@@ -9,11 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\icon_auth_forge.ico" />
+    <None Remove="Icons\BasaltIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Icons\icon_auth_forge.ico">
+    <Resource Include="Icons\BasaltIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -10,7 +10,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        WindowStartupLocation="CenterScreen" Icon="/Icons/icon_auth_forge.ico">
+        WindowStartupLocation="CenterScreen" Icon="/Icons/BasaltIcon.ico">
     <materialDesign:DialogHost x:Name="ModalDialogHost" CloseOnClickAway="False">
 
         <materialDesign:DialogHost.DialogContent>
