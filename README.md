@@ -135,6 +135,6 @@ A diagnostic view built for real-time decoding, structural dissection, and signa
 
 ---
 
-## License
+## 🧾 License
 
 This project is licensed under the MIT License.
